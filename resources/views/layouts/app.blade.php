@@ -1,96 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="a/images/icons/favicon.png"/>
-        <title>ARJ HOME</title>
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Bootstrap core CSS -->
-        <link href="a/css/bootstrap.min.css" rel="stylesheet">
-        <link href="a/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <!-- Custom styles for this template -->
-        <link href="a/css/style.css" rel="stylesheet">
-        <link href="a/fonts/antonio-exotic/stylesheet.css" rel="stylesheet">
-        <link rel="stylesheet" href="a/css/lightbox.min.css">
-        <link href="a/css/responsive.css" rel="stylesheet">
-        <script src="a/js/jquery.min.js" type="text/javascript"></script>
-        <script src="a/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="a/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
-        <script src="a/js/instafeed.min.js" type="text/javascript"></script>
-        <script src="a/js/custom.js" type="text/javascript"></script>
-        <body>
-            <div id="page">
-                <!---header top---->
-                <div class="top-header">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <!--                            <a href="#"> </a>
-                                                            <div class="info-block"><i class="fa fa-map"></i>701 Old York Drive Richmond USA.</div>-->
-                            </div>
-                            <div class="col-md-6">
-                                <div class="social-grid">
-                                    <ul class="list-unstyled text-right">
-                                        <li><a><i class="fa fa-facebook"></i></a></li>
-                                        <li><a><i class="fa fa-twitter"></i></a></li>
-                                        <li><a><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a><i class="fa fa-instagram"></i></a></li>
-                                    </ul>
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+                            
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            </li>
+                        @endguest
+                    </ul>
                 </div>
-                <!--header--->
-                <header class="header-container">
-                    <div class="container">
-                        <div class="top-row">
-                            <div class="row">
-                                <div class="col-md-2 col-sm-6 col-xs-6">
-                                    <div id="logo">
-                                        <!--<a href="index.html"><img src="images/logo.png" alt="logo"></a>-->
-                                        <a href="index.html"><span>ARJ </span>home</a>
-                                    </div>                       
-                                </div>
-                                <div class="col-sm-6 visible-sm">
-                                    <div class="text-right"><button type="button" class="book-now-btn">Book Now</button></div>
-                                </div>
-                                <div class="col-md-8 col-sm-12 col-xs-12 remove-padd">
-                                    <nav class="navbar navbar-default">
-                                        <div class="navbar-header page-scroll">
-                                            <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
-                                                <span class="sr-only">Toggle navigation</span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                                <span class="icon-bar"></span>
-                                            </button>
-    
-                                        </div>
-                                        <div class="collapse navigation navbar-collapse navbar-ex1-collapse remove-space">
-                                            <ul class="list-unstyled nav1 cl-effect-10">
-                                                <li><a  data-hover="Home" class="active"><span>Home</span></a></li>
-                                                <li><a data-hover="About" href = {{url('about')}}><span>About</span></a></li>
-                                                <li><a data-hover="Rooms" href = {{url('rooms')}}><span>Rooms</span></a></li>
-                                                <li><a data-hover="Gallery" href = {{url('gallery')}}><span>Gallery</span></a></li>
-                                                <li><a data-hover="Dinning" href = {{url('dinning')}}><span>Dinning</span></a></li>
-                                                <li><a data-hover="News" href = {{url('news')}}><span>News</span></a></li>
-                                                <li><a data-hover="Contact Us" href = {{url('contact')}}><span>contact Us</span></a></li>
-                                            </ul>
-    
-                                        </div>
-                                    </nav>
-                                </div>
-                                <div class="col-md-2  col-sm-4 col-xs-12 hidden-sm">
-                                    <div class="text-right"><button type="button" class="book-now-btn">Book Now</button></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </header>
-                
-    </head>
-    @yield('content')
+            </div>
+        </nav>
+
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+</body>
 </html>

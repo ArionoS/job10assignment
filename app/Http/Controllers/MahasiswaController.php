@@ -16,7 +16,7 @@ class MahasiswaController extends Controller
     {
         //
         $mahasiswa = Mahasiswa::all(); // Mengambil semua isi tabel
-        $posts = Mahasiswa::orderBy('id', 'desc')->paginate(6);
+        $posts = Mahasiswa::orderBy('nim', 'desc')->paginate(6);
         return view('mahasiswa.index', compact('mahasiswa'));
         with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -63,13 +63,13 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($nim)
     {
         //TODO : Implementasikan Proses Tampilkan Data Satu Mahasiswa Berdasarkan ID
         // return view('mahasiswa.show');
 
-        $Mahasiswa = Mahasiswa::find($id);
-        return view('mahasiswa.show', compact('Mahasiswa'));
+        $Mahasiswa = Mahasiswa::find($nim);
+        return view('mahasiswa.detail', compact('Mahasiswa'));
     }
 
     /**
@@ -78,12 +78,12 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nim)
     {
         //TODO : Implementasikan Proses Tampilkan Form Update Data Mahasiswa by Id
         // return view('mahasiswa.edit');
 
-        $Mahasiswa = Mahasiswa::find($id);
+        $Mahasiswa = Mahasiswa::find($nim);
         return view('mahasiswa.edit', compact('Mahasiswa'));
     }
 
@@ -94,7 +94,7 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nim)
     {
         //TODO : Implementasikan Proses Update Data Mahasiswa By Id
         // return "Proses udpate data ke database";
@@ -108,7 +108,7 @@ class MahasiswaController extends Controller
         ]);
 
  //fungsi eloquent untuk mengupdate data inputan kita
-        Mahasiswa::find($id)->update($request->all());
+        Mahasiswa::find($nim)->update($request->all());
 
 //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')
@@ -122,12 +122,12 @@ class MahasiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($nim)
     {
         //TODO : Implementasikan Proses Delete Mahasiswa By Id
         // return "proses destroy database";
 
-        Mahasiswa::find($id)->delete();
+        Mahasiswa::find($nim)->delete();
         return redirect()->route('mahasiswa.index')
             -> with('success', 'Mahasiswa Berhasil Dihapus');
 

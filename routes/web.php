@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RoomController;
 use App\Http\Controllers\MahasiswaController;
 use Illuminate\Http\Request; 
 
@@ -15,7 +14,7 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::resource('mahasiswas', MahasiswaController::class);
+Route::resource('mahasiswa', MahasiswaController::class);
 
 Route::get('/', function () {
    return view('index');

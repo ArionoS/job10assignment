@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Facades\DB;
 
@@ -13,18 +14,15 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+    
         $mahasiswa = Mahasiswa::paginate(3);
         return view('mahasiswa.index',['mahasiswa'=>$mahasiswa]);
         
-        $mahasiswa = DB::table('mahasiswa')
-                ->where('name', '=', name)
-                ->where('kelas', '>', 1)
-                ->get();
-    }
 
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -137,13 +135,21 @@ class MahasiswaController extends Controller
         return redirect()->route('mahasiswa.index')
             -> with('success', 'Mahasiswa Berhasil Dihapus');
 
-    }
-    public function search(Request $request)
-    {
-        $mahasiswa = $request->get('keyword');
+    }  
+    public function search(Request $request) {
 
-        $result = mahasiswa::where('title', 'LIKE', '%' . $search . '%')->paginate(10);
+        $mahasiswa = Mahasiswa::when($request->keyword, function ($query) use ($request){
         
-        return view('result', compact('search', 'result'));
+        $query->where( 'nama', 'like', "%{$request->keyword}%")
+        
+                ->orWhere('nim', 'like', "%{$request->keyword}%") 
+                
+                ->orWhere('kelas', 'like', "%{$request->keyword}%")
+        
+                 ->orWhere('jurusan', 'like', "%{$request->keyword}%");
+                    })->paginate(5);
+        
+        $mahasiswa->appends($request->only('keyword')); 
+        return view('mahasiswa.index', compact( 'mahasiswa'));
     }
 }

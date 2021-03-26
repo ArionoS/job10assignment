@@ -14,11 +14,12 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+  return view('index');
+});
+Route::get('mahasiswa/cari/', [MahasiswaController::class,'search']);
 Route::resource('mahasiswa', MahasiswaController::class);
 
-Route::get('/', function () {
-   return view('index');
-});
 //Route::get('/about', function () {
   //  return view('about');
 //});

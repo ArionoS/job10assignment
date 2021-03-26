@@ -8,13 +8,13 @@
 <div class="float-right my-2">
     <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
         </div>
-        <form class="form-horizontal" role="search" method="get" action="index.php?cari-akun">
-            <div class="col-md-8 col-xs-12">
-                <input type="text" name="keyword" class="form-control" placeholder="Cari Akun Disini...">
+        <div class="float-left my-4">
+        <form action="/mahasiswa/cari/" method="GET">
+            <div class="input-group">
+                <input type="text" name="keyword" class="form-control" placeholder="Search Name...">
+                <button type="submit" class="btn btn-primary">
+                    Search
             </div><p>
-            <div class="col-md-4">
-                <a class="btn btn-success" href="{{ route('mahasiswa.index') }}"> Cari Mahasiswa</a>
-            </div>
         </form>
 </div>
 </div>

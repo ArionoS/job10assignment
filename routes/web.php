@@ -22,7 +22,9 @@ Route::get('/', function () {
 //Route::get('/about', function () {
   //  return view('about');
 //});
-Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
+//Route::get('/rooms', [RoomController::class, 'index'])->name('rooms');
+//Route::get('/search', 'MahasiswaController@search')->name('mahasiswa.search');
+
 //Route::get('/contact', function () {
   //  return view('contact');
 //});

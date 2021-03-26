@@ -44,6 +44,8 @@ class Mahasiswa extends Model
         'nama',
         'kelas',
         'jurusan',
+        'alamat',
+        'email',
     ];
 
 

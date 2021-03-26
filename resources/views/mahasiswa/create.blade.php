@@ -38,6 +38,14 @@
                     <label for="jurusan">Jurusan</label>                    
                     <input type="jurusan" name="jurusan" class="form-control" id="jurusan" aria-describedby="jurusan" >                
                 </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>                    
+                    <input type="alamat" name="alamat" class="form-control" id="alamat" aria-describedby="alamat" >                
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>                    
+                    <input type="email" name="email" class="form-control" id="email" aria-describedby="email" >                
+                </div>
             <button type="submit" class="btn btn-primary">Submit</button>
             </form>
             </div>

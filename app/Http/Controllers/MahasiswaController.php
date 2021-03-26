@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Facades\DB;
 
 class MahasiswaController extends Controller
 {
@@ -17,6 +18,11 @@ class MahasiswaController extends Controller
         //
         $mahasiswa = Mahasiswa::paginate(3);
         return view('mahasiswa.index',['mahasiswa'=>$mahasiswa]);
+        
+        $mahasiswa = DB::table('mahasiswa')
+                ->where('name', '=', name)
+                ->where('kelas', '>', 1)
+                ->get();
     }
 
     /**
@@ -46,7 +52,8 @@ class MahasiswaController extends Controller
             'nama' => 'required',
             'kelas' => 'required',
             'jurusan' => 'required',
-        
+            'alamat' => 'required',
+            'email' => 'required',
         ]);
 
         Mahasiswa::create($request->all());
@@ -102,7 +109,8 @@ class MahasiswaController extends Controller
             'nama' => 'required',
             'kelas' => 'required',
             'jurusan' => 'required',
-        
+            'alamat' => 'required',
+            'email' => 'required',
         ]);
 
  //fungsi eloquent untuk mengupdate data inputan kita
@@ -129,5 +137,13 @@ class MahasiswaController extends Controller
         return redirect()->route('mahasiswa.index')
             -> with('success', 'Mahasiswa Berhasil Dihapus');
 
+    }
+    public function search(Request $request)
+    {
+        $mahasiswa = $request->get('keyword');
+
+        $result = mahasiswa::where('title', 'LIKE', '%' . $search . '%')->paginate(10);
+        
+        return view('result', compact('search', 'result'));
     }
 }

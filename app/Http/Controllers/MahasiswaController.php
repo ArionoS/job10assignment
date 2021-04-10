@@ -63,7 +63,7 @@ class MahasiswaController extends Controller
             $mahasiswa->major =$request ->get('major');
             $mahasiswa->address =$request ->get('address');
             $mahasiswa->email =$request ->get('email');
-            $mahasiswa->save();
+          
 
             $class= new ClassModel;
             $class->id= $request->get('class');
@@ -87,8 +87,8 @@ class MahasiswaController extends Controller
         //TODO : Implementasikan Proses Tampilkan Data Satu Mahasiswa Berdasarkan ID
         // return view('mahasiswa.show');
 
-        $Mahasiswa = Mahasiswa::find($nim);
-        return view('mahasiswa.detail', compact('Mahasiswa'));
+        $Mahasiswa = Mahasiswa::with('class')->where('nim',$nim)->first();
+        return view('mahasiswa.detail', ['Mahasiswa'=>$mahasiswa]);
     }
 
     /**
@@ -102,8 +102,9 @@ class MahasiswaController extends Controller
         //TODO : Implementasikan Proses Tampilkan Form Update Data Mahasiswa by Id
         // return view('mahasiswa.edit');
 
-        $Mahasiswa = Mahasiswa::find($nim);
-        return view('mahasiswa.edit', compact('Mahasiswa'));
+        $Mahasiswa = Mahasiswa::with('class')->where('nim',$nim)->first();
+        $class = ClassModel::all();
+        return view('mahasiswa.edit', compact('Mahasiswa','class'));
     }
 
     /**
@@ -128,7 +129,19 @@ class MahasiswaController extends Controller
         ]);
 
  //fungsi eloquent untuk mengupdate data inputan kita
-        Mahasiswa::find($nim)->update($request->all());
+$mahasiswa->nim =$request ->get('nim');
+            $mahasiswa->name =$request ->get('name');
+            $mahasiswa->major =$request ->get('major');
+            $mahasiswa->address =$request ->get('address');
+            $mahasiswa->email =$request ->get('email');
+          
+
+            $class= new ClassModel;
+            $class->id= $request->get('class');
+
+            $mahasiswa->class()->associate($class);
+        $mahasiswa->save();
+
 
 //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('mahasiswa.index')

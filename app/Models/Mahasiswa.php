@@ -46,6 +46,7 @@ class Mahasiswa extends Model
         'major',
         'address',
         'email',
+        
     ];
     public function class(){
         return $this->belongsTo(ClassModel::class);

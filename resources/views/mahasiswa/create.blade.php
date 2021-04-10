@@ -32,12 +32,13 @@
                     <input type="name" name="name" class="form-control" id="name" aria-describedby="name" >                
                 </div>
                 <div class="form-group">
-                    <label for="Class">Class</label>
-                            <select name="Class" class="form-control">
+                    <label for="class">Class</label>
+                            <select name="class" class="form-control">
                                 @foreach($class as $kls)
                     <option value="{{$kls->id}}">{{$kls->class_name}}</option>
                     @endforeach
                             </select>
+                </div>
                 <div class="form-group">
                     <label for="major">Jurusan</label>                    
                     <input type="major" name="major" class="form-control" id="major" aria-describedby="major" >                

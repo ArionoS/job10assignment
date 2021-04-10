@@ -4,6 +4,7 @@
    
 <div class="container mt-5">
    
+
     <div class="row justify-content-center align-items-center">
         <div class="card" style="width: 24rem;">
             <div class="card-header">
@@ -31,9 +32,12 @@
                     <input type="name" name="name" class="form-control" id="name" aria-describedby="name" >                
                 </div>
                 <div class="form-group">
-                    <label for="class">Kelas</label>                    
-                    <input type="class" name="class" class="form-control" id="class" aria-describedby="class" >                
-                </div>
+                    <label for="Class">Class</label>
+                            <select name="Class" class="form-control">
+                                @foreach($class as $kls)
+                    <option value="{{$kls->id}}">{{$kls->class_name}}</option>
+                    @endforeach
+                            </select>
                 <div class="form-group">
                     <label for="major">Jurusan</label>                    
                     <input type="major" name="major" class="form-control" id="major" aria-describedby="major" >                

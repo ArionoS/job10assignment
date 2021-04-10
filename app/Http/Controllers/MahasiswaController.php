@@ -57,7 +57,20 @@ class MahasiswaController extends Controller
             'email' => 'required',
         ]);
 
-        Mahasiswa::create($request->all());
+            $mahasiswa= new Mahasiswa;
+            $mahasiswa->nim =$request ->get('nim');
+            $mahasiswa->name =$request ->get('name');
+            $mahasiswa->major =$request ->get('major');
+            $mahasiswa->address =$request ->get('address');
+            $mahasiswa->email =$request ->get('email');
+            $mahasiswa->save();
+
+            $class= new ClassModel;
+            $class->id= $request->get('class');
+
+            $mahasiswa->class()->associate($class);
+        $mahasiswa->save();
+
         
         return redirect()->route('mahasiswa.index')
             ->with('success', 'Mahasiswa Berhasil Ditambahkan');

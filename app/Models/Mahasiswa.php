@@ -35,18 +35,20 @@ class Mahasiswa extends Model
 {
     use HasFactory;
 
-    protected $table = "mahasiswa";
+    protected $table = "student";
     public $timestamps= false; 
     protected  $primaryKey = 'nim';
 
     protected $fillable = [
         'nim',
-        'nama',
-        'kelas',
-        'jurusan',
-        'alamat',
+        'name',
+        'class_id',
+        'major',
+        'address',
         'email',
     ];
+    public function class(){
+        return $this->belongsTo(ClassModel::class);
 
-
+}
 }

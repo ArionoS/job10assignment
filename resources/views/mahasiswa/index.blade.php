@@ -35,10 +35,10 @@
     @foreach ($mahasiswa as $mhs)
     <tr>
     <td>{{ $mhs ->nim }}</td>
-    <td>{{ $mhs ->nama }}</td>
-    <td>{{ $mhs ->kelas }}</td>
-    <td>{{ $mhs ->jurusan }}</td>
-    <td>{{ $mhs ->alamat }}</td>
+    <td>{{ $mhs ->name }}</td>
+    <td>{{ $mhs ->class->class_name }}</td>
+    <td>{{ $mhs ->major }}</td>
+    <td>{{ $mhs ->address}}</td>
     <td>{{ $mhs ->email }}</td>
     <td>
         <form action="{{ route('mahasiswa.destroy',['mahasiswa'=>$mhs->nim]) }}" method="POST">
@@ -53,7 +53,5 @@
      @endforeach
     </table>
 
-    <div class="d-flex">      
-        {{$mahasiswa->links()}}
-  </div>
+ 
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Mahasiswa;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Facades\DB;
+use App\Models\ClassModel;
 
 class MahasiswaController extends Controller
 {
@@ -17,8 +18,9 @@ class MahasiswaController extends Controller
     public function index(Request $request)
     {
     
-        $mahasiswa = Mahasiswa::paginate(3);
-        return view('mahasiswa.index',['mahasiswa'=>$mahasiswa]);
+        $mahasiswa = Mahasiswa::with('class')->get();
+        $paginate = Mahasiswa::orderBy('id_student','asc')->paginate(3);
+        return view('mahasiswa.index',['mahasiswa'=>$mahasiswa,'paginate'=>$paginate]);
         
 
     }
@@ -31,7 +33,8 @@ class MahasiswaController extends Controller
     public function create()
     {
         //TODO : Tampilkan Form Create Mahasiswa
-        return view('mahasiswa.create');
+        $class =ClassModel::all();
+        return view('mahasiswa.create',['class'=>$class]);
     }
 
     /**
@@ -47,10 +50,10 @@ class MahasiswaController extends Controller
 
         $request->validate([
             'nim' => 'required',
-            'nama' => 'required',
-            'kelas' => 'required',
-            'jurusan' => 'required',
-            'alamat' => 'required',
+            'name' => 'required',
+            'class' => 'required',
+            'major' => 'required',
+            'address' => 'required',
             'email' => 'required',
         ]);
 
@@ -104,10 +107,10 @@ class MahasiswaController extends Controller
 
         $request->validate([
             'nim' => 'required',
-            'nama' => 'required',
-            'kelas' => 'required',
-            'jurusan' => 'required',
-            'alamat' => 'required',
+            'name' => 'required',
+            'class' => 'required',
+            'major' => 'required',
+            'address' => 'required',
             'email' => 'required',
         ]);
 
@@ -140,13 +143,13 @@ class MahasiswaController extends Controller
 
         $mahasiswa = Mahasiswa::when($request->keyword, function ($query) use ($request){
         
-        $query->where( 'nama', 'like', "%{$request->keyword}%")
+        $query->where( 'name', 'like', "%{$request->keyword}%")
         
                 ->orWhere('nim', 'like', "%{$request->keyword}%") 
                 
-                ->orWhere('kelas', 'like', "%{$request->keyword}%")
+                ->orWhere('class', 'like', "%{$request->keyword}%")
         
-                 ->orWhere('jurusan', 'like', "%{$request->keyword}%");
+                 ->orWhere('major', 'like', "%{$request->keyword}%");
                     })->paginate(5);
         
         $mahasiswa->appends($request->only('keyword')); 

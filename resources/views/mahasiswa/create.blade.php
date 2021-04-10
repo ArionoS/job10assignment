@@ -27,20 +27,20 @@
                     <input type="text" name="nim" class="form-control" id="nim" aria-describedby="nim" >                
                 </div>
                 <div class="form-group">
-                    <label for="nama">Nama</label>                    
-                    <input type="nama" name="nama" class="form-control" id="nama" aria-describedby="nama" >                
+                    <label for="name">Nama</label>                    
+                    <input type="name" name="name" class="form-control" id="name" aria-describedby="name" >                
                 </div>
                 <div class="form-group">
-                    <label for="kelas">Kelas</label>                    
-                    <input type="kelas" name="kelas" class="form-control" id="kelas" aria-describedby="kelas" >                
+                    <label for="class">Kelas</label>                    
+                    <input type="class" name="class" class="form-control" id="class" aria-describedby="class" >                
                 </div>
                 <div class="form-group">
-                    <label for="jurusan">Jurusan</label>                    
-                    <input type="jurusan" name="jurusan" class="form-control" id="jurusan" aria-describedby="jurusan" >                
+                    <label for="major">Jurusan</label>                    
+                    <input type="major" name="major" class="form-control" id="major" aria-describedby="major" >                
                 </div>
                 <div class="form-group">
-                    <label for="alamat">Alamat</label>                    
-                    <input type="alamat" name="alamat" class="form-control" id="alamat" aria-describedby="alamat" >                
+                    <label for="address">Alamat</label>                    
+                    <input type="address" name="address" class="form-control" id="address" aria-describedby="address" >                
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>                    

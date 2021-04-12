@@ -35,8 +35,6 @@ class MataKuliahSeeder extends Seeder
 'jam'=>6,
 'semester'=>4,
 ],
-
-
-        ];
+];
     }
 }

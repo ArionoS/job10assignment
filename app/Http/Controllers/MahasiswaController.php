@@ -181,4 +181,13 @@ $mahasiswa->nim =$request ->get('nim');
         $mahasiswa->appends($request->only('keyword')); 
         return view('mahasiswa.index', compact( 'mahasiswa'));
     }
+    public function showCourse($Nim){
+        $id = Student::where('nim', $Nim)->value('id_student');
+        $Student = Student::with('class', 'course')
+            ->where('nim', $Nim)
+            ->first();
+        // dd($Student->course);
+
+        return view('mahasiswa.detailCourse', ['Mahasiswa' => $mahasiswa]);
+    }
 }

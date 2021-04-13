@@ -52,4 +52,7 @@ class Mahasiswa extends Model
         return $this->belongsTo(ClassModel::class);
 
 }
+public function course(){
+    return $this->belongsToMany(CourseModel::class, 'courser','id_student', 'course_id')->withPivot('score');
+}
 }

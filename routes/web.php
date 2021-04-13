@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
   return view('index');
 });
-Route::get('showCourse/{mahasiswa}', [StudentController::class, 'showCourse'])->name('mahasiswa.showCourse');
+Route::get('showCourse/{mahasiswa}', [MahasiswaController::class, 'showCourse'])->name('mahasiswa.showCourse');
 Route::resource('mahasiswa', MahasiswaController::class);
 
 //Route::get('/about', function () {

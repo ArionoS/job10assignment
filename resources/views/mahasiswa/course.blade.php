@@ -1,4 +1,4 @@
-@extends('student.layout')
+@extends('mahasiswa.layout')
 @section('content')
 <div class="container mt-5">
     <div class="pull-left mt-3">
@@ -13,9 +13,9 @@
             </center>
             <div>
                 <ul class="list-group list-group-flush">
-                    <p><b>Nim: </b>{{$Student->nim}}</p>
-                    <p><b>Name: </b>{{$Student->name}}</p>
-                    <p><b>Class: </b>{{$Student->class->class_name}}</p>
+                    <p><b>Nim: </b>{{$Mahasiswa->nim}}</p>
+                    <p><b>Name: </b>{{$Mahasiswa->name}}</p>
+                    <p><b>Class: </b>{{$Mahasiswa->class->class_name}}</p>
                 </ul>
             </div>
             <table class="table table-bordered">
@@ -25,7 +25,7 @@
                     <th>Semester</th>
                     <th>Score</th>
                 </tr>
-                @foreach ($Student->course as $course)
+                @foreach ($Mahasiswa->course as $course)
                 <tr>
 
                     <td>{{ $course ->course_name }}</td>

@@ -17,7 +17,8 @@
                     <p><b>Name: </b>{{$Mahasiswa->name}}</p>
                     <p><b>Class: </b>{{$Mahasiswa->class->class_name}}</p>
                 </ul>
-            </div>
+            </div> 
+            
             <table class="table table-bordered">
                 <tr>
                     <th>Course Name</th>

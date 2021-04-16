@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\ArticleController;
 use Illuminate\Http\Request; 
 
 /*
@@ -17,8 +18,11 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
   return view('index');
 });
-Route::get('showCourse/{mahasiswa}', [MahasiswaController::class, 'showCourse'])->name('mahasiswa.showCourse');
-Route::resource('mahasiswa', MahasiswaController::class);
+
+Route::resource('articles', ArticleController::class);
+
+//Route::get('showCourse/{mahasiswa}', [MahasiswaController::class, 'showCourse'])->name('mahasiswa.showCourse');
+//Route::resource('mahasiswa', MahasiswaController::class);
 
 //Route::get('/about', function () {
   //  return view('about');

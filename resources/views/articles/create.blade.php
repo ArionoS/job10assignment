@@ -1,0 +1,27 @@
+<!--Template Name: vacayhome
+File Name: home.html
+Author Name: ThemeVault
+Author URI: http://www.themevault.net/
+License URI: http://www.themevault.net/license/-->
+
+@extends('layouts.app')
+@section('content')
+<div class="container">
+<form action="/articles" method="post" enctype="multipart/formdata">
+@csrf
+<div class="form-group">
+<label for="title">Title: </label>
+<input type="text" class="form-control"
+required="required" name="title"><br>
+<label for="content">Content: </label>
+<textarea type="text" class="form-control"
+required="required" name="content"></textarea><br>
+<label for="image">Image: </label>
+<input type="file" class="form-control"
+required="required" name="image"><br>
+<button type="submit" name="submit" class="btn btn-primary
+float-right">Save</button>
+</div>
+</form>
+</div>
+@endsection

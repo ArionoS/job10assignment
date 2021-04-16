@@ -39,6 +39,7 @@ class ArticleController extends Controller
     {
         if($request -> file('image')){
 $image_name = $request -> file ('image')->store('images','public');
+ 
 
         }
         Article::create([

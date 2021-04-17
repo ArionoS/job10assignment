@@ -45,17 +45,12 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        $image_name = new Mahasiswa;
+        if($request -> file('image')){   
+            $image_name = $request->file ('image')->store('images','public'); 
+        }
         //TODO : Implementasikan Proses Simpan Ke Database
         // return "Proses Simpan ke database";
-       
-        $request->validate([
-            'nim' => 'required',
-            'name' => 'required',
-            'class' => 'required',
-            'major' => 'required',
-            'address' => 'required',
-            'email' => 'required',
-        ]);
 
             $mahasiswa= new Mahasiswa;
             $mahasiswa->nim =$request ->get('nim');
@@ -63,6 +58,7 @@ class MahasiswaController extends Controller
             $mahasiswa->major =$request ->get('major');
             $mahasiswa->address =$request ->get('address');
             $mahasiswa->email =$request ->get('email');
+            $mahasiswa->profile_picture =$image_name;
            
 
             $class= new ClassModel;
@@ -88,7 +84,7 @@ class MahasiswaController extends Controller
         //TODO : Implementasikan Proses Tampilkan Data Satu Mahasiswa Berdasarkan ID
         // return view('mahasiswa.show');
 
-        $Mahasiswa = Mahasiswa::with('class')->where('nim',$nim)->first();
+        $mahasiswa = Mahasiswa::with('class')->where('nim',$nim)->first();
         return view('mahasiswa.detail', ['Mahasiswa'=>$mahasiswa]);
     }
 

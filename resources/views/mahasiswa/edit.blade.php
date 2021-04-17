@@ -48,6 +48,11 @@
         <label for="email">Email</label>
             <input type="email" name="email" class="form-control" id="email" value="{{ $Mahasiswa->email }}" aria-describedby="email" >
         </div>
+        <div class="form-group">
+            <label for="image">Image</label>
+                <input type="file" class="form-control"required="required" name="image" value="{{$Mahasiswa->profile_picture}}"><br>
+            <img width="150px" src="{{asset('storage/'.$Mahasiswa->profile_picture)}}">
+        </div>
     <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

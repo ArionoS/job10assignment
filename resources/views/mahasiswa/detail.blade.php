@@ -14,6 +14,7 @@
     <li class="list-group-item"><b>Jurusan: </b>{{$Mahasiswa->major}}</li>
     <li class="list-group-item"><b>Alamat: </b>{{$Mahasiswa->address}}</li>
     <li class="list-group-item"><b>Email: </b>{{$Mahasiswa->email}}</li>
+    <li class="list-group-item"><b>Profile Picture: </b><br><img width="50px" src="{{asset('storage/'.$Mahasiswa->profile_picture)}}"></li>
 </ul>
 </div>
         <a class="btn btn-success mt-3" href="{{ route('mahasiswa.index') }}">Kembali</a>

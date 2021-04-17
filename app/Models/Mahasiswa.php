@@ -46,6 +46,7 @@ class Mahasiswa extends Model
         'major',
         'address',
         'email',
+        'profile_picture',
       
         
     ];

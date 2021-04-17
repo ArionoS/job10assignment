@@ -26,9 +26,9 @@ auto;">
 </tr>
 @foreach ($articles as $article)
 <tr>
-<td>{{ $article->title }}</td>
-<td>{{ $article->content }}</td>
-
+    <td width="110px"><a  href="{{route('articles.edit',['article'=>$article->id]) }}">{{$article->title}}</td>
+        <td width="880px">{{ $article->content }}</td>
+        <td width="110px"><img width="50px" src="{{asset('storage/'.$article->featured_image)}}"></td>
 </tr>
 @endforeach
 </table>

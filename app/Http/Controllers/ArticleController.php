@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class ArticleController extends Controller
 {
@@ -24,9 +25,9 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('articles.create');
     }
 
     /**
@@ -37,17 +38,17 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        if($request -> file('image')){
-$image_name = $request -> file ('image')->store('images','public');
- 
-
+        if($request -> file('image')){   
+            $image_name = $request->file ('image')->store('images','public'); 
         }
+
         Article::create([
-    'title'=> $request->title,
-    'content'=> $request->content,
-    'featured_image'=> $request->featured_image,
+            'title'=> $request->title,
+            'content'=> $request->content,
+            'featured_image'=> $image_name,
         ]);
-        return redirect()
+        return redirect()-> route('articles.index')
+            ->with('success','Articles Success Add');
     }
 
     /**
@@ -67,9 +68,10 @@ $image_name = $request -> file ('image')->store('images','public');
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($id)
     {
-        //
+        $articles = Article::find($id);
+        return view('articles.edit', ['articles'=> $articles]);
     }
 
     /**
@@ -81,7 +83,19 @@ $image_name = $request -> file ('image')->store('images','public');
      */
     public function update(Request $request, Article $article)
     {
-        //
+       
+        $article->title = $request->title;
+        $article->content = $request->content;
+
+        if($article->featuted_image && file_exists(storage_path('app/public/' .$article->featured_image))){
+        storage::delete('public/'.$article->featured_image);
+        }
+        $image_name= $request->file('image')->store('images','public');
+        $article->featured_image=$image_name;
+
+        $article->save();
+        return redirect()-> route('articles.index')
+        ->with('success','Articles Success Add');
     }
 
     /**
@@ -93,5 +107,11 @@ $image_name = $request -> file ('image')->store('images','public');
     public function destroy(Article $article)
     {
         //
+    }
+    public function print_pdf()
+    {
+        $articles =Article::All();
+        $pdf = PDF::loadview('articles.articles_pdf', ['articles'=> $articles]);
+        return $pdf->stream();
     }
 }

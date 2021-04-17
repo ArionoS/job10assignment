@@ -19,10 +19,14 @@ Route::get('/', function () {
   return view('index');
 });
 
-Route::resource('articles', ArticleController::class);
 
-//Route::get('showCourse/{mahasiswa}', [MahasiswaController::class, 'showCourse'])->name('mahasiswa.showCourse');
-//Route::resource('mahasiswa', MahasiswaController::class);
+
+//Route::resource('articles', ArticleController::class);
+//Route::get('/article/articles_pdf', [ArticleController::class, 'print_pdf'])->name('print_pdf');
+//Route::get('/articles/create', [ArticleController::class, 'create'])->name('create');
+
+Route::get('showCourse/{mahasiswa}', [MahasiswaController::class, 'showCourse'])->name('mahasiswa.showCourse');
+Route::resource('mahasiswa', MahasiswaController::class);
 
 //Route::get('/about', function () {
   //  return view('about');

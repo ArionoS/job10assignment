@@ -47,7 +47,7 @@ class MahasiswaController extends Controller
     {
         //TODO : Implementasikan Proses Simpan Ke Database
         // return "Proses Simpan ke database";
-
+       
         $request->validate([
             'nim' => 'required',
             'name' => 'required',
@@ -63,7 +63,7 @@ class MahasiswaController extends Controller
             $mahasiswa->major =$request ->get('major');
             $mahasiswa->address =$request ->get('address');
             $mahasiswa->email =$request ->get('email');
-          
+           
 
             $class= new ClassModel;
             $class->id= $request->get('class');
@@ -74,8 +74,9 @@ class MahasiswaController extends Controller
         
         return redirect()->route('mahasiswa.index')
             ->with('success', 'Mahasiswa Berhasil Ditambahkan');
-    }
-
+    
+   
+        }
     /**
      * Display the specified resource.
      *

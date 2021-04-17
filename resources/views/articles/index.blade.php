@@ -1,8 +1,3 @@
-<!--Template Name: vacayhome
-File Name: home.html
-Author Name: ThemeVault
-Author URI: http://www.themevault.net/
-License URI: http://www.themevault.net/license/-->
 
 @extends('layouts.app')
 @section('content')
@@ -11,6 +6,17 @@ License URI: http://www.themevault.net/license/-->
 <p>{{ $message }}</p>
 </div>
 @endif
+
+<div class="row">
+    <div style="margin:0px 0px 0px 70px;">
+        <a class="btn btn-success" href="{{route('print_pdf')}}">Print PDF</a>
+    </div>
+</div><br>
+<div class="row">
+    <div style="margin:0px 0px 0px 70px;">
+        <a class="btn btn-success" href="{{route('create')}}">ADD PDF</a>
+    </div>
+</div><br>
 <table class="table table-bordered" style="width:95%;margin: 0
 auto;">
 <tr>
@@ -22,8 +28,7 @@ auto;">
 <tr>
 <td>{{ $article->title }}</td>
 <td>{{ $article->content }}</td>
-<td><img width="150px"
-src="{{asset('storage/'.$article->featured_image)}}"></td>Page 4 of 15
+
 </tr>
 @endforeach
 </table>

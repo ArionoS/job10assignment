@@ -17,26 +17,16 @@ class CourseStudentSeeder extends Seeder
     public function run()
     {
 
-        DB::table('course_student')->insert([
+        DB::table('courser')->insert([
             [
-                'id_student' => 1941720092, // you can change this data
+                'id_student' => 45, // you can change this data
                 'course_id' => 1,
                 'score' => 'A',
             ],
             [
-                'id_student' => 1941720091,
+                'id_student' => 1234,
                 'course_id' => 2,
                 'score' => 'A',
-            ],
-            [
-                'id_student' => 1941720092,
-                'course_id' => 3,
-                'score' => 'B',
-            ],
-            [
-                'id_student' => 1941720093,
-                'course_id' => 4,
-                'score' => 'C+',
             ],
 
         ]);

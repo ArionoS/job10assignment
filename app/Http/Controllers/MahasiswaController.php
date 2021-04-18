@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Facades\DB;
 use App\Models\ClassModel;
+use PDF;
 
 class MahasiswaController extends Controller
 {
@@ -179,12 +180,21 @@ $mahasiswa->nim =$request ->get('nim');
         return view('mahasiswa.index', compact( 'mahasiswa'));
     }
     public function showCourse($nim){
-        $id = Mahasiswa::where('nim', $nim)->value('id_student');
+        $id = Mahasiswa::where('nim', $nim);
         $mahasiswa = Mahasiswa::with('class', 'course')
             ->where('nim', $nim)
             ->first();
         // dd($Student->course);
 
         return view('mahasiswa.course', ['Mahasiswa' => $mahasiswa]);
+    }   
+    public function print_pdf($nim)
+    {
+        $id = Mahasiswa::where('nim', $nim)->value('id_student');
+        $mahasiswa = Mahasiswa::with('class', 'course')
+            ->where('nim', $nim)
+            ->first();
+        $pdf = PDF::loadview('mahasiswa.course', ['Mahasiswa'=> $mahasiswa]);
+        return $pdf->stream();
     }
 }

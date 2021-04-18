@@ -5,6 +5,7 @@
         <center>
             <h2>JURUSAN TEKNOLOGI INFORMASI-POLITEKNIK NEGERI MALANG</h2>
         </center>
+     
     </div>
     <div class="row justify-content-center align-items-center">
         <div style="width: 80rem;">
@@ -13,12 +14,18 @@
             </center>
             <div>
                 <ul class="list-group list-group-flush">
+                   
                     <p><b>Nim: </b>{{$Mahasiswa->nim}}</p>
                     <p><b>Name: </b>{{$Mahasiswa->name}}</p>
                     <p><b>Class: </b>{{$Mahasiswa->class->class_name}}</p>
                 </ul>
             </div> 
-            
+           
+            <div class="float-right my-2">
+                <div style="margin:0px 0px 0px 70px;">
+                    <a class="btn btn-success" href="{{route('print_pdf')}}">Print PDF</a>
+                </div>
+            </div><br>
             <table class="table table-bordered">
                 <tr>
                     <th>Course Name</th>

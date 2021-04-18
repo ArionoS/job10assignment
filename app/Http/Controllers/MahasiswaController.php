@@ -188,13 +188,10 @@ $mahasiswa->nim =$request ->get('nim');
 
         return view('mahasiswa.course', ['Mahasiswa' => $mahasiswa]);
     }   
-    public function print_pdf($nim)
+    public function print_pdf(Mahasiswa $mahasiswa)
     {
-        $id = Mahasiswa::where('nim', $nim)->value('id_student');
-        $mahasiswa = Mahasiswa::with('class', 'course')
-            ->where('nim', $nim)
-            ->first();
-        $pdf = PDF::loadview('mahasiswa.course', ['Mahasiswa'=> $mahasiswa]);
+     $course = Mahasiswa::find($mahasiswa-> id_student)->course()->get();
+        $pdf = PDF::loadview('mahasiswa.course', ['Mahasiswa'=> $mahasiswa,'course'=>$Course]);
         return $pdf->stream();
     }
 }
